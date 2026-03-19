@@ -13,17 +13,22 @@ class Bank:
             print("Invalid amount")
     
     def withdraw(self, amt):
-        if amt>0:
+        if amt>0 and amt<=self.balance:
             self.balance -= amt
             self.transactions.append(f'Withdraw {amt}')
             print(f'{amt} withdrawn')
+        elif amt>self.balance:
+            print("insufficient balance")
         else:
             print('invalid amount')
             
     def check_transactions(self):
         print('transactions: ')
-        for i in self.transactions:
-            print(i)
+        if not self.transactions:
+            print("No history")
+        else:
+            for i in self.transactions:
+                print(i)
             
     def check_balance(self):
         print(f'Total balance: {self.balance}')
